@@ -39,7 +39,15 @@ export default function DashboardLayout({
           <Sidebar />
         </div>
 
-        <div className="flex-grow">{children}</div>
+        {/* Main Content */}
+        <div className="flex-grow relative">
+          {children}
+        </div>
+
+        {/* Backdrop Blur Effect */}
+                {isSidebarOpen && (
+          <div className="fixed inset-0 bg-white bg-opacity-30 backdrop-blur-sm z-30"></div>
+        )}
       </div>
     </div>
   );
