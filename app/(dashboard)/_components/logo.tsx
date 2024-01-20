@@ -10,6 +10,7 @@ export default function Logo() {
         src="/logo.svg"
         alt="Logo"
         quality={95}
+        priority={true}
     />
   )
 }
