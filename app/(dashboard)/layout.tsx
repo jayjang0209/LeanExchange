@@ -40,7 +40,7 @@ export default function DashboardLayout({
         </div>
 
         {/* Main Content */}
-        <div className="flex-grow relative">
+        <div className="flex-grow relative ml-3 mt-3">
           {children}
         </div>
 
