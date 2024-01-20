@@ -1,7 +1,9 @@
+"use client"
+
 import React from "react";
 import Logo from "./logo";
-import { UserButton } from "@clerk/nextjs";
 import { Menu } from "lucide-react";
+import NavbarRoutes from "./navbar-routes";
 
 interface NavbarProps {
   toggleSidebar: () => void;
@@ -26,9 +28,8 @@ export default function Navbar({ toggleSidebar }: NavbarProps) {
 
       <div className="hidden sm:flex">SearchBar</div>
 
-      <div>
-        <UserButton />
-      </div>
+      <NavbarRoutes />
+
     </nav>
   );
 }
