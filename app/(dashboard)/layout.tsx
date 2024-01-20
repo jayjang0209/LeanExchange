@@ -1,17 +1,46 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import Sidebar from "./_components/sidebar";
+import Navbar from "./_components/navbar";
 
 export default function DashboardLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  // Function to check the window width
+  const checkWidth = () => {
+    if (window.innerWidth >= 640) {
+      setIsSidebarOpen(true);
+    } else {
+      setIsSidebarOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", checkWidth);
+    checkWidth();
+    return () => window.removeEventListener("resize", checkWidth);
+  }, []);
+
   return (
-    <div className="h-full">
-      <div className="hidden md:flex h-full w-56 flex-col fixed inset-y-0 z-50">
-        <Sidebar />
-        {children}
-    </div>
+    <div className="flex flex-col h-full">
+      <Navbar toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
+
+      <div className="flex flex-grow">
+        <div
+          className={`fixed z-40 transform ${
+            isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+          } sm:relative transition-transform duration-300 ease-in-out h-full bg-white shadow-md`}
+        >
+          <Sidebar />
+        </div>
+
+        <div className="flex-grow">{children}</div>
+      </div>
     </div>
   );
 }
