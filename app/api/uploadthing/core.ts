@@ -5,9 +5,11 @@ const f = createUploadthing();
 
 const handleAuth = () => {
   const { userId } = auth();
-  if (!userId) throw new Error("Unauthorized");
+  console.log("userId", userId)
+
+  if (!userId ) throw new Error("Unauthorized");
   return { userId };
-};
+}
 
 // FileRouter for your app, can contain multiple FileRoutes
 export const ourFileRouter = {
@@ -17,9 +19,9 @@ export const ourFileRouter = {
   courseAttachment: f(["text", "image", "video", "audio", "pdf"])
     .middleware(() => handleAuth())
     .onUploadComplete(() => {}),
-  chapterVideo: f({ video: { maxFileSize: "512MB", maxFileCount: 1 } })
+  chapterVideo: f({ video: { maxFileCount: 1, maxFileSize: "512MB" } })
     .middleware(() => handleAuth())
-    .onUploadComplete(() => {}),
+    .onUploadComplete(() => {})
 } satisfies FileRouter;
-
+ 
 export type OurFileRouter = typeof ourFileRouter;
