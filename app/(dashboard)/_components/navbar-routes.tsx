@@ -15,21 +15,20 @@ export default function NavbarRoutes() {
 
   return (
     <div className="flex gap-x-2 ml-auth">
-      {isTeacherPage ? 
-        <Button
-        ><LogOut className="h-4 w-4 mr-2" /> Log Out
-        </Button> :
-        (
-          <Link href="/teacher/courses">
-            <Button size="sm" variant="ghost">
-              Teacher Mode
-            </Button>
-          </Link>
-        ) 
-      }
-      <UserButton 
-        afterSignOutUrl="/"
-      />
+      {isTeacherPage ? (
+        <Link href="/teacher/courses">
+        <Button variant="ghost">
+          <LogOut className="h-4 w-4 mr-2" /> Exit
+        </Button>
+        </Link>
+      ) : (
+        <Link href="/teacher/courses">
+          <Button size="sm" variant="ghost">
+            Teacher Mode
+          </Button>
+        </Link>
+      )}
+      <UserButton afterSignOutUrl="/" />
     </div>
   );
 }
