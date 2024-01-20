@@ -16,7 +16,7 @@ export default function NavbarRoutes() {
   return (
     <div className="flex gap-x-2 ml-auth">
       {isTeacherPage ? (
-        <Link href="/teacher/courses">
+        <Link href="/">
         <Button variant="ghost">
           <LogOut className="h-4 w-4 mr-2" /> Exit
         </Button>
