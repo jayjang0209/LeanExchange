@@ -45,8 +45,8 @@ export default function DashboardLayout({
         </div>
 
         {/* Backdrop Blur Effect */}
-                {isSidebarOpen && (
-          <div className="fixed inset-0 bg-white bg-opacity-30 backdrop-blur-sm z-30"></div>
+        {isSidebarOpen && (
+          <div className="fixed inset-0 bg-white bg-opacity-30 backdrop-blur-sm z-30 sm:hidden"></div>
         )}
       </div>
     </div>
