@@ -17,8 +17,14 @@ interface AttachmentFormProps {
   courseId: string;
 };
 
+interface FileUploadData {
+  url: string;
+  originalFileName?: string; 
+}
+
 const formSchema = z.object({
   url: z.string().min(1),
+  originalFileName: z.string().optional(),
 });
 
 export const AttachmentForm = ({
@@ -55,6 +61,12 @@ export const AttachmentForm = ({
       setDeletingId(null);
     }
   }
+
+  const handleFileUpload = ({ url, originalFileName }: FileUploadData) => {
+    if (url) {
+      onSubmit({ url, originalFileName });
+    }
+  };
 
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
@@ -113,11 +125,7 @@ export const AttachmentForm = ({
         <div>
           <FileUpload
             endpoint="courseAttachment"
-            onChange={(url) => {
-              if (url) {
-                onSubmit({ url: url });
-              }
-            }}
+            onChange={handleFileUpload}
           />
           <div className="text-xs text-muted-foreground mt-4">
             Add anything your students might need to complete the course.
