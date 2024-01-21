@@ -21,20 +21,21 @@ model Course {
   isPublished  Boolean       @default(false)
   categoryId   String?
   category     Category?     @relation(fields: [categoryId], references: [id])
-  attachements Attachement[]
+  attachments Attachment[]
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
 
   @@index([categoryId])
 }
 
-model Attachement {
-  id        String   @id @default(uuid())
-  name      String
-  url       String   @db.Text
-  courseId  String
-  // once course is deleted, all attachements will be deleted (cascade)
-  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+model Attachment {
+  id String @id @default(uuid())
+  name String
+  url String @db.Text
+
+  courseId String
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
